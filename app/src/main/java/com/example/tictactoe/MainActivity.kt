@@ -41,9 +41,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initializeBoardStatus() {
         for (i in 0..2) {
             for (j in 0..2) {
-                boardStatus[0][0] == -1
-                board[0][0].isEnabled = true
-                board[0][0].text = ""
+                boardStatus[i][j] == -1
+            }
+        }
+        for (i in board) {
+            for (button in i) {
+                button.isEnabled = true
+                button.text = ""
             }
         }
     }
@@ -91,11 +95,37 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (TURN_COUNT == 9)
             updateDisplay("Game Draw")
+
+        checkWinner()
+    }
+
+    private fun checkWinner() {
+        // Horizontal Rows
+        for (i in 0..2) {
+            if (boardStatus[i][0] == boardStatus[i][1] && boardStatus[i][0] == boardStatus[i][2]) {
+                if (boardStatus[i][0] == 1) {
+                    updateDisplay("Player X Won")
+                    break
+                } else if (boardStatus[i][0] == 0) {
+                    updateDisplay("Player O Won")
+                    break
+                }
+            }
+        }
     }
 
     private fun updateDisplay(message: String) {
         displayTv.text = message
     }
+
+    private fun disableButton() {
+        for (i in board) {
+            for (button in i) {
+                button.isEnabled = false
+            }
+        }
+    }
+
 
     private fun updateValue(row: Int, col: Int, player: Boolean) {
         val text: String = if (player) "X" else "O"
