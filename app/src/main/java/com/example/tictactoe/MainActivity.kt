@@ -109,7 +109,43 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 } else if (boardStatus[i][0] == 0) {
                     updateDisplay("Player O Won")
                     break
+                } else {
+                    continue
                 }
+            }
+        }
+        // Vertical Rows
+        for (i in 0..2) {
+            if (boardStatus[0][i] == boardStatus[1][i] && boardStatus[0][i] == boardStatus[2][i]) {
+                if (boardStatus[0][i] == 1) {
+                    updateDisplay("Player X Won")
+                    break
+                } else if (boardStatus[0][i] == 0) {
+                    updateDisplay("Player O Won")
+                    break
+                } else {
+                    continue
+                }
+            }
+        }
+
+        // First Diagonal
+        if (boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]) {
+            if (boardStatus[0][0] == 1) {
+                updateDisplay("Player X Won")
+            } else if (boardStatus[0][0] == 0) {
+                updateDisplay("Player O Won")
+            } else {
+            }
+        }
+
+        // Second Diagonal
+        if (boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]) {
+            if (boardStatus[1][1] == 1) {
+                updateDisplay("Player X Won")
+            } else if (boardStatus[1][1] == 0) {
+                updateDisplay("Player O Won")
+            } else {
             }
         }
     }
