@@ -10,9 +10,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var board: Array<Array<Button>>
 
-    var PLAYER = true
-    var TURN_COUNT = 0
-    var boardStatus = Array(3) { IntArray(3) }
+    private var PLAYER = true
+    private var TURN_COUNT = 0
+    private var boardStatus = Array(3) { IntArray(3) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         resetBtn.setOnClickListener {
             PLAYER = true
             TURN_COUNT = 0
+            displayTv.text = "Player X Turn"
             initializeBoardStatus()
         }
     }
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initializeBoardStatus() {
         for (i in 0..2) {
             for (j in 0..2) {
-                boardStatus[i][j] == -1
+                boardStatus[i][j] = -1
             }
         }
         for (i in board) {
@@ -92,7 +93,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             updateDisplay("Player O Turn")
         }
-
         if (TURN_COUNT == 9)
             updateDisplay("Game Draw")
 
@@ -105,12 +105,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (boardStatus[i][0] == boardStatus[i][1] && boardStatus[i][0] == boardStatus[i][2]) {
                 if (boardStatus[i][0] == 1) {
                     updateDisplay("Player X Won")
+                    disableButton()
                     break
                 } else if (boardStatus[i][0] == 0) {
                     updateDisplay("Player O Won")
+                    disableButton()
                     break
                 } else {
-                    continue
                 }
             }
         }
@@ -119,12 +120,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (boardStatus[0][i] == boardStatus[1][i] && boardStatus[0][i] == boardStatus[2][i]) {
                 if (boardStatus[0][i] == 1) {
                     updateDisplay("Player X Won")
+                    disableButton()
                     break
                 } else if (boardStatus[0][i] == 0) {
                     updateDisplay("Player O Won")
+                    disableButton()
                     break
                 } else {
-                    continue
                 }
             }
         }
@@ -133,8 +135,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]) {
             if (boardStatus[0][0] == 1) {
                 updateDisplay("Player X Won")
+                disableButton()
             } else if (boardStatus[0][0] == 0) {
                 updateDisplay("Player O Won")
+                disableButton()
             } else {
             }
         }
@@ -143,8 +147,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]) {
             if (boardStatus[1][1] == 1) {
                 updateDisplay("Player X Won")
+                disableButton()
             } else if (boardStatus[1][1] == 0) {
                 updateDisplay("Player O Won")
+                disableButton()
             } else {
             }
         }
