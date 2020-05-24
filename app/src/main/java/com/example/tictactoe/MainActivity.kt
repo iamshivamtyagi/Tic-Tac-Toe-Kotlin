@@ -6,9 +6,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+const lateinit var board: Array<Array<Button>>
 
-    lateinit var board: Array<Array<Button>>
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var PLAYER = true
     private var TURN_COUNT = 0
