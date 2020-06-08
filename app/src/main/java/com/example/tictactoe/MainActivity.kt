@@ -177,7 +177,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             isEnabled = false
             setText(text)
         }
-
         boardStatus[row][col] = value
     }
 
